@@ -1,0 +1,23 @@
+<service>
+    <id>SFManttoAgente</id>
+    <name>SFMantto Agente de inventario</name>
+    <description>Audita el hardware del equipo y lo envía a la API de SFMantto.</description>
+
+    <executable>%BASE%\runtime\bin\java.exe</executable>
+    <arguments>-Xmx256m -jar "%BASE%\sfmantto-agente.jar" --servicio</arguments>
+
+    <startmode>Automatic</startmode>
+    <delayedAutoStart>true</delayedAutoStart>
+
+    <onfailure action="restart" delay="10 sec"/>
+    <onfailure action="restart" delay="30 sec"/>
+    <onfailure action="restart" delay="60 sec"/>
+    <resetfailure>1 hour</resetfailure>
+    <stoptimeout>15 sec</stoptimeout>
+
+    <logpath>%PROGRAMDATA%\SFMantto\logs</logpath>
+    <log mode="roll-by-size">
+        <sizeThreshold>1024</sizeThreshold>
+        <keepFiles>3</keepFiles>
+    </log>
+</service>

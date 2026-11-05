@@ -19,7 +19,7 @@ public class ConversorApi {
     public JsonObject aJson(Auditoria a) {
         JsonObject raiz = new JsonObject();
         raiz.addProperty("nombre_equipo", nombrePrincipal(a));
-        raiz.addProperty("uuid", a.placa().uuid());
+        raiz.addProperty("identificador", Identificador.de(a));
         raiz.addProperty("tipo", a.placa().esPortatil() ? "Laptop" : "Desktop");
         raiz.addProperty("fecha_auditoria", a.fecha());
         raiz.add("sistema", sistema(a));

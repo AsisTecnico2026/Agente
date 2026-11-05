@@ -108,7 +108,11 @@ public class Auditor {
                 os.getVersionInfo().getBuildNumber(), os.getBitness(), host,
                 usuario, dominioUsuario, tipoCuenta, enDominio, dominioEquipo);
     }
-
+    // Usuario con la sesión abierta en este momento (como DOMINIO
+    public String usuarioConectado() {
+        JsonObject win = consultarWindows();
+        return win == null ? null : texto(win, "usuario");
+    }
     // Consulta a Windows (PowerShell). El resultado viaja en Base64 para evitar problemas de acentos
     private JsonObject consultarWindows() {
         String script = "$c = Get-CimInstance Win32_ComputerSystem; "
